@@ -1,0 +1,27 @@
+{
+  "name": "employees-records",
+  "version": "1.0.0",
+  "description": "A CRUD service for employees' records",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Charitie/employees-records.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Charitie/employees-records/issues"
+  },
+  "homepage": "https://github.com/Charitie/employees-records#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
