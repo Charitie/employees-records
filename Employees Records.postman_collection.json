@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "ed652d4c-7b1d-4c15-b86d-7879b2f7064b",
+		"name": "Employees Records",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Employee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Star\",\r\n    \"last_name\": \"Mary\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://node-employees-tarus.onrender.com/addEmployee",
+					"protocol": "https",
+					"host": [
+						"node-employees-tarus",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"addEmployee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign Manager",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Star\",\r\n    \"last_name\": \"Mary\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://node-employees-tarus.onrender.com/addEmployee",
+					"protocol": "https",
+					"host": [
+						"node-employees-tarus",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"addEmployee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Employees",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Star\",\r\n    \"last_name\": \"Mary\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{rootURL}}/fetchEmployees",
+					"host": [
+						"{{rootURL}}"
+					],
+					"path": [
+						"fetchEmployees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Employee Status",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Mercy\",\r\n    \"last_name\": \"Mary\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{rootURL}}/updateEmployee/2",
+					"host": [
+						"{{rootURL}}"
+					],
+					"path": [
+						"updateEmployee",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete employee",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Star\",\r\n    \"last_name\": \"Mary\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{rootURL}}/6",
+					"host": [
+						"{{rootURL}}"
+					],
+					"path": [
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Single Employee",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Star\",\r\n    \"last_name\": \"Mary\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{rootURL}}/fetchEmployee/1",
+					"host": [
+						"{{rootURL}}"
+					],
+					"path": [
+						"fetchEmployee",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
