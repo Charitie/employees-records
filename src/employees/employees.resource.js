@@ -8,9 +8,19 @@ class EmployeeResouce {
     return employee[0];
   }
 
-  async getEmployee(id, email) {
-    const employee = await knexInstance(this.employeeTable).where({ id }).orWhere({ email }).first();
+  async getEmployeeByEmail(email) {
+    const employee = await knexInstance(this.employeeTable).where({ email }).first();
     return employee;
+  }
+
+  async getEmployeeById(id) {
+    const employee = await knexInstance(this.employeeTable).where({ id }).first();
+    return employee;
+  }
+
+  async assignManager(employeeId, managerId) {
+    const update = await knexInstance(this.employeeTable).update({ managerId }, "*").where("id", employeeId);
+    return update;
   }
 }
 

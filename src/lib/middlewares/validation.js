@@ -1,6 +1,4 @@
-import { check, oneOf } from "express-validator";
-
-// export const employeeValidation = [body("email").isEmail()];
+import { check } from "express-validator";
 
 export const employeeValidation = [
   check("firstName")
@@ -22,4 +20,9 @@ export const employeeValidation = [
     .withMessage("Title is required")
     .isLength({ min: 2 })
     .withMessage("Title must have atleast 2 characters"),
+];
+
+export const employeeIdValidation = [
+  check("employeeId").not().isEmpty().withMessage("Employee id required"),
+  check("managerId").not().isEmpty().withMessage("Manger id required"),
 ];
