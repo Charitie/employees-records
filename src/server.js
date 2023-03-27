@@ -1,7 +1,12 @@
-const express = require("express");
+import 'dotenv/config';
+import App from './app.js'
+import { getConfig } from './config/index.js';
 
-const app = express();
-app.use(express.json());
+
+const { port } = getConfig();
+
+const app = new App();
+
+app.start(port);
 
 
-app.listen(3000, () => console.log(`App running on port: 3000`));
