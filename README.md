@@ -13,6 +13,8 @@ Node version **v16**  and above.
 
 Check config folder for env variables.
 
+[Postman collection](https://github.com/Charitie/employees-records/blob/main/Employees%20Records.postman_collection.json)
+
 Run application: 
 ```
 npm install
