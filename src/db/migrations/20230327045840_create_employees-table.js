@@ -6,6 +6,7 @@ const createEmployeeTable = async (knex) => {
     table.datetime("date_employed").defaultTo(knex.fn.now());
     table.text("first_name", 128).notNullable();
     table.text("last_name", 128).notNullable();
+    table.string("email").unique().notNullable();
     table.text("title", 128).notNullable();
     table.integer("manager_id").references("id").inTable("employee").onDelete("SET NULL");
     table.enum("status", ["active", "suspended", "deleted"]).defaultTo("active");
