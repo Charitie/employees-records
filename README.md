@@ -4,6 +4,13 @@ A CRUD service for employees' records
 ### Set up application
 Node version **v16**  and above.
 
+**Technologies**
+- Express.js
+- Morgan
+- express-validator
+- knex.js
+- sqlite3
+
 Check config folder for env variables.
 
 Run application: 
