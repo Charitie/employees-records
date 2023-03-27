@@ -2,6 +2,7 @@
 A CRUD service for employees' records
 
 ### Set up application
+Node version v16 and above
 Check config folder for env variables.
 
 Run application: 
