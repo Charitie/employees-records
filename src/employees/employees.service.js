@@ -12,7 +12,11 @@ class EmployeeService {
   }
 
   async getEmployee(employeeId) {
-    return employeeResouce.getEmployeeById(employeeId);
+    const employee = await employeeResouce.getEmployeeById(employeeId);
+    if (!employee) {
+      throw new CustomError("Employee not found");
+    }
+    return employee;
   }
 
   async assignManager(employeeId, managerId) {

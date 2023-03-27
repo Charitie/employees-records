@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { validationResult } from "express-validator";
+import { param, sanitizeParam, validationResult } from "express-validator";
 
 import { asyncRequestHandlerWrapper } from "../lib/asyncRequestHandlerWrapper.js";
-import { employeeValidation, employeeIdValidation } from "../lib/middlewares/validation.js";
+import { employeeValidation, employeeIdValidation, userIdValidation } from "../lib/middlewares/validation.js";
 import { employeeService } from "./employees.service.js";
 
 export function getEmployeeRouter() {
@@ -22,7 +22,10 @@ export function getEmployeeRouter() {
   //fetch employee by id
   employeeRouter.get(
     "/fetch-employee/:id",
+   employeeIdValidation,
     asyncRequestHandlerWrapper(async (req, res) => {
+      validationResult(req).throw();
+
       const employee = await employeeService.getEmployee(req.params.id);
       res.status(200).json({ message: "Employee fetch successfully", employee });
     })
@@ -31,7 +34,7 @@ export function getEmployeeRouter() {
   //assign a manager to employee
   employeeRouter.post(
     "/employee/assign-manager",
-    employeeIdValidation,
+    userIdValidation,
     asyncRequestHandlerWrapper(async (req, res) => {
       validationResult(req).throw();
 
