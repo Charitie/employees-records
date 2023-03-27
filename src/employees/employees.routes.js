@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { param, sanitizeParam, validationResult } from "express-validator";
+import { validationResult } from "express-validator";
 
 import { asyncRequestHandlerWrapper } from "../lib/asyncRequestHandlerWrapper.js";
 import { employeeValidation, employeeIdValidation, userIdValidation } from "../lib/middlewares/validation.js";
@@ -22,7 +22,7 @@ export function getEmployeeRouter() {
   //fetch employee by id
   employeeRouter.get(
     "/fetch-employee/:id",
-   employeeIdValidation,
+    employeeIdValidation,
     asyncRequestHandlerWrapper(async (req, res) => {
       validationResult(req).throw();
 
@@ -41,6 +41,15 @@ export function getEmployeeRouter() {
       const { employeeId, managerId } = req.body;
       const update = await employeeService.assignManager(employeeId, managerId);
       res.status(200).json({ message: "Employee assigned a manager successfully", update });
+    })
+  );
+
+  //fetch all employees
+  employeeRouter.get(
+    "/fetch-employees",
+    asyncRequestHandlerWrapper(async (req, res) => {
+      const employees = await employeeService.getEmployees(req.query.limit, req.query.offset);
+      res.status(200).json({ message: "Employees fetched successfully", employees });
     })
   );
 

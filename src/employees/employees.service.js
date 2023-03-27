@@ -29,6 +29,10 @@ class EmployeeService {
 
     return employeeResouce.assignManager(employeeId, managerId);
   }
+
+  async getEmployees(limit, offset) {
+    return employeeResouce.getEmployees(limit, offset);
+  }
 }
 
 export const employeeService = new EmployeeService();
