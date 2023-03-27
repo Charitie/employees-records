@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import { globalErrorHandler } from "./lib/middlewares/globalErrorHandler.js";
+import { getEmployeeRouter } from "./employees/employees.routes.js";
 
 export class App {
   constructor() {
@@ -20,6 +21,8 @@ export class App {
     application.get("/", (req, res) => {
       res.json({ message: "I'm ruuning here..." });
     });
+
+    application.use("/", getEmployeeRouter());
 
     //this should be the last middleware to be passed to the app
     application.use(globalErrorHandler());
