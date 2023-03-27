@@ -8,7 +8,7 @@ class EmployeeResource {
     return employee[0];
   }
 
-  async fetchEmployee(filterKey, filterValue) {
+  async getEmployee(filterKey, filterValue) {
     const employee = await knexInstance(this.employeeTable)
       .where({ [filterKey]: filterValue })
       .first();

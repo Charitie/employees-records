@@ -12,7 +12,7 @@ class EmployeeService {
   }
 
   async getEmployee(filterKey, filterValue) {
-    const employee = await employeeResource.fetchEmployee(filterKey, filterValue);
+    const employee = await employeeResource.getEmployee(filterKey, filterValue);
     if (!employee) {
       throw new CustomError(`Employee with ${filterKey} ${filterValue} not found`);
     }
