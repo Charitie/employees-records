@@ -3,25 +3,25 @@ import { employeeResource } from "./employees.resource.js";
 
 class EmployeeService {
   async addEmployee(employeeData) {
-    const employeeExist = await employeeResource.getEmployeeByEmail(employeeData.email);
+    const employee = await employeeResource.getEmployee("email", employeeData.email);
 
-    if (employeeExist) {
+    if (employee) {
       throw new CustomError("Email already exist", 400);
     }
     return employeeResource.addEmployee(employeeData);
   }
 
-  async getEmployee(employeeId) {
-    const employee = await employeeResource.getEmployeeById(employeeId);
+  async getEmployee(filterKey, filterValue) {
+    const employee = await employeeResource.fetchEmployee(filterKey, filterValue);
     if (!employee) {
-      throw new CustomError("Employee not found");
+      throw new CustomError(`Employee with ${filterKey} ${filterValue} not found`);
     }
     return employee;
   }
 
   async assignManager(employeeId, managerId) {
-    const managerExist = await employeeResource.getEmployeeById(managerId);
-    const employeeExist = await employeeResource.getEmployeeById(employeeId);
+    const managerExist = await employeeResource.getEmployee("id", managerId);
+    const employeeExist = await employeeResource.getEmployee("id", employeeId);
 
     if (!managerExist || !employeeExist) {
       throw new CustomError("User not found", 400);
@@ -35,20 +35,12 @@ class EmployeeService {
   }
 
   async updateEmployeeStatus(employeeId, status) {
-    const employee = await employeeResource.getEmployeeById(employeeId);
-    if (!employee) {
-      throw new CustomError("Employee not found");
-    }
-
+    await this.getEmployee("id", employeeId);
     return employeeResource.updateEmployeeStatus(employeeId, status);
   }
 
   async deleteEmployee(employeeId) {
-    const employee = await employeeResource.getEmployeeById(employeeId);
-    if (!employee) {
-      throw new CustomError("Employee not found");
-    }
-
+    await this.getEmployee("id", employeeId);
     return employeeResource.deleteEmployee(employeeId);
   }
 }

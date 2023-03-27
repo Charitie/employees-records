@@ -8,13 +8,10 @@ class EmployeeResource {
     return employee[0];
   }
 
-  async getEmployeeByEmail(email) {
-    const employee = await knexInstance(this.employeeTable).where({ email }).first();
-    return employee;
-  }
-
-  async getEmployeeById(id) {
-    const employee = await knexInstance(this.employeeTable).where({ id }).first();
+  async fetchEmployee(filterKey, filterValue) {
+    const employee = await knexInstance(this.employeeTable)
+      .where({ [filterKey]: filterValue })
+      .first();
     return employee;
   }
 

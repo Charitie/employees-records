@@ -31,7 +31,7 @@ export function getEmployeeRouter() {
     asyncRequestHandlerWrapper(async (req, res) => {
       validationResult(req).throw();
 
-      const employee = await employeeService.getEmployee(req.params.id);
+      const employee = await employeeService.getEmployee('id', req.params.employeeId);
       res.status(200).json({ message: "Employee fetch successfully", employee });
     })
   );
@@ -73,7 +73,7 @@ export function getEmployeeRouter() {
 
   // delete employee permanently
   employeeRouter.delete(
-    "/update-employee-status/:employeeId",
+    "/delete-employee/:employeeId",
     employeeIdValidation,
     asyncRequestHandlerWrapper(async (req, res) => {
       validationResult(req).throw();
