@@ -2,7 +2,12 @@ import { Router } from "express";
 import { validationResult } from "express-validator";
 
 import { asyncRequestHandlerWrapper } from "../lib/asyncRequestHandlerWrapper.js";
-import { employeeValidation, employeeIdValidation, userIdValidation } from "../lib/middlewares/validation.js";
+import {
+  employeeValidation,
+  employeeIdValidation,
+  userIdValidation,
+  accountStatusValidation,
+} from "../lib/middlewares/validation.js";
 import { employeeService } from "./employees.service.js";
 
 export function getEmployeeRouter() {
@@ -50,6 +55,19 @@ export function getEmployeeRouter() {
     asyncRequestHandlerWrapper(async (req, res) => {
       const employees = await employeeService.getEmployees(req.query.limit, req.query.offset);
       res.status(200).json({ message: "Employees fetched successfully", employees });
+    })
+  );
+
+  //update employee account status (soft delete)
+  employeeRouter.put(
+    "/update-employee-status",
+    accountStatusValidation,
+    asyncRequestHandlerWrapper(async (req, res) => {
+      validationResult(req).throw();
+
+      const { employeeId, status } = req.body;
+      const employee = await employeeService.updateEmployeeStatus(employeeId, status);
+      res.status(200).json({ message: "Employee status updated successfully", employee });
     })
   );
 

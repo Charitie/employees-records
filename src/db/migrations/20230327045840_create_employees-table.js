@@ -1,4 +1,5 @@
 const EMPLOYEE_TABLE = "employees";
+const STATUS = ["active", "suspended", "deleted"];
 
 const createEmployeeTable = async (knex) => {
   await knex.schema.createTable(EMPLOYEE_TABLE, (table) => {
@@ -9,7 +10,7 @@ const createEmployeeTable = async (knex) => {
     table.string("email").unique().notNullable();
     table.text("title", 128).notNullable();
     table.integer("manager_id").references("id").inTable("employee").onDelete("SET NULL");
-    table.enum("status", ["active", "suspended", "deleted"]).defaultTo("active");
+    table.enum("status", STATUS).defaultTo("active");
     table.timestamps(true, true);
   });
 };

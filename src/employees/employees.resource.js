@@ -1,6 +1,6 @@
 import { knexInstance } from "../db/knexInstance.js";
 
-class EmployeeResouce {
+class EmployeeResource {
   employeeTable = "employees";
 
   async addEmployee(employeeData) {
@@ -27,7 +27,7 @@ class EmployeeResouce {
     const employees = await knexInstance
       .select(
         knexInstance.raw(
-        `
+          `
             em.id, em.first_name, em.last_name,
             coalesce(manager.first_name || ' ' || manager.last_name, 'No Manager') as manager 
             FROM ${this.employeeTable} em
@@ -40,6 +40,11 @@ class EmployeeResouce {
       .limit(limit);
     return employees;
   }
+
+  async updateEmployeeStatus(employeeId, status) {
+    const update = await knexInstance(this.employeeTable).update({ status }, "*").where("id", employeeId);
+    return update;
+  }
 }
 
-export const employeeResouce = new EmployeeResouce();
+export const employeeResource = new EmployeeResource();

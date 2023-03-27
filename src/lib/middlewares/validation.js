@@ -1,4 +1,4 @@
-import { check, param, sanitizeParam } from "express-validator";
+import { check, param } from "express-validator";
 
 export const employeeValidation = [
   check("firstName")
@@ -28,3 +28,6 @@ export const userIdValidation = [
 ];
 
 export const employeeIdValidation = [param("id").trim().isInt().withMessage("Employee id is required")];
+
+const STATUS = ["active", "suspended", "deleted"];
+export const accountStatusValidation = check("status").isIn(STATUS).withMessage("Invalid status");
