@@ -28,7 +28,7 @@ class EmployeeResource {
       .select(
         knexInstance.raw(
           `
-            em.id, em.first_name, em.last_name,
+            em.id, em.first_name, em.last_name, em.title,
             coalesce(manager.first_name || ' ' || manager.last_name, 'No Manager') as manager 
             FROM ${this.employeeTable} em
             LEFT JOIN ${this.employeeTable} manager 
@@ -43,6 +43,11 @@ class EmployeeResource {
 
   async updateEmployeeStatus(employeeId, status) {
     const update = await knexInstance(this.employeeTable).update({ status }, "*").where("id", employeeId);
+    return update;
+  }
+
+  async deleteEmployee(employeeId) {
+    const update = await knexInstance(this.employeeTable).where("id", employeeId).del();
     return update;
   }
 }

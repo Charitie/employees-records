@@ -35,7 +35,21 @@ class EmployeeService {
   }
 
   async updateEmployeeStatus(employeeId, status) {
+    const employee = await employeeResource.getEmployeeById(employeeId);
+    if (!employee) {
+      throw new CustomError("Employee not found");
+    }
+
     return employeeResource.updateEmployeeStatus(employeeId, status);
+  }
+
+  async deleteEmployee(employeeId) {
+    const employee = await employeeResource.getEmployeeById(employeeId);
+    if (!employee) {
+      throw new CustomError("Employee not found");
+    }
+
+    return employeeResource.deleteEmployee(employeeId);
   }
 }
 
