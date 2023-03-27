@@ -24,10 +24,10 @@ export const employeeValidation = [
 
 export const userIdValidation = [
   check("employeeId").not().isEmpty().withMessage("Employee id required"),
-  check("managerId").not().isEmpty().withMessage("Manger id required"),
+  check("managerId").not().isEmpty().withMessage("Manager id required"),
 ];
 
-export const employeeIdValidation = [param("id").trim().isInt().withMessage("Employee id is required")];
+export const employeeIdValidation = [param("employeeId").trim().isInt().withMessage("Employee id is required")];
 
 const STATUS = ["active", "suspended", "deleted"];
 export const accountStatusValidation = check("status").isIn(STATUS).withMessage("Invalid status");
