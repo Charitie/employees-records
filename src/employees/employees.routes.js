@@ -7,6 +7,8 @@ import { employeeService } from "./employees.service.js";
 
 export function getEmployeeRouter() {
   const employeeRouter = Router();
+
+  //add new employee 
   employeeRouter.post(
     "/add-employee",
     employeeValidation,
@@ -17,8 +19,9 @@ export function getEmployeeRouter() {
     })
   );
 
+  //fetch employee by id
   employeeRouter.get(
-    "/fetch-employee/:email",
+    "/fetch-employee/:id",
     asyncRequestHandlerWrapper(async (req, res) => {
       const employee = await employeeService.getEmployee(req.params.id);
       res.status(200).json({ message: "success", employee });
